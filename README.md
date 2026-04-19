@@ -9,7 +9,7 @@
 
 > **AI-Powered Digital Lending Platform** - Real-time video KYC, intelligent risk assessment, and instant loan approval using cutting-edge AI technology.
 
-
+https://loanai-system.streamlit.app/
 
 ## 📋 Table of Contents
 - [Overview](#-overview)
