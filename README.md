@@ -9,6 +9,8 @@
 
 > **AI-Powered Digital Lending Platform** - Real-time video KYC, intelligent risk assessment, and instant loan approval using cutting-edge AI technology.
 
+
+
 ## 📋 Table of Contents
 - [Overview](#-overview)
 - [Features](#-features)
@@ -72,3 +74,52 @@ Language: Python 3.11
 Database: PostgreSQL 15, Redis 7
 Task Queue: Celery 5.3+
 API Style: RESTful + WebSocket
+
+### Architecture
+┌─────────────────────────────────────────────────────────────┐
+│                      Client Browser                          │
+│                   (React + WebRTC)                          │
+└────────────┬────────────────────────────┬──────────────────┘
+             │                            │
+             │ WebRTC                     │ HTTPS
+             ▼                            ▼
+┌────────────────────────┐      ┌─────────────────────────┐
+│   WebRTC SFU Server    │      │   FastAPI Backend       │
+│   (Media Processing)   │◄────►│   - Auth (JWT)          │
+└────────────────────────┘      │   - Risk Engine         │
+             │                   │   - Offer Generation    │
+             │ Audio/Video       └───────────┬─────────────┘
+             ▼                               │
+┌────────────────────────┐                   │
+│   AI Services Layer    │                   ▼
+│   - Whisper (STT)      │      ┌─────────────────────────┐
+│   - DeepFace (CV)      │      │   PostgreSQL            │
+│   - GPT-4 (LLM)        │      │   - Users               │
+│   - LangChain          │      │   - Sessions            │
+└────────────────────────┘      │   - Risk Scores         │
+             │                   │   - Loan Offers         │
+             ▼                   └─────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                 Cloud Infrastructure (AWS)                   │
+│  - EC2 (Compute)  - S3 (Storage)  - RDS (Database)         │
+│  - CloudFront (CDN)  - CloudWatch (Monitoring)             │
+└─────────────────────────────────────────────────────────────┘
+
+### Prerequisites
+# Required
+Python 3.11+
+Node.js 18+
+PostgreSQL 15+
+Redis 7+
+
+# Optional (for AI features)
+Docker Desktop
+CUDA-capable GPU (for local AI)
+
+# Clone and setup
+git clone https://github.com/Varshini1928/Agentic-AI-Video-Call-Based-Digital-Loan-Onboarding-Risk-Assessment-System.git
+cd Agentic-AI-Video-Call-Based-Digital-Loan-Onboarding-Risk-Assessment-System
+powershell -ExecutionPolicy Bypass -File scripts/setup_windows.ps1
+
+# Run the application
+streamlit run app.py
